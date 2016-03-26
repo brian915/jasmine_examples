@@ -1,0 +1,19 @@
+{
+  "name": "jasmine",
+  "version": "1.0.0",
+  "description": "examples created while studying the book Javascript Testing With Jasmine",
+  "main": "index.js",
+  "dependencies": {
+    "jasmine-node": "^1.14.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github:brian915/jasmine-examples "
+  },
+  "author": "brian runk",
+  "license": "MIT"
+}
