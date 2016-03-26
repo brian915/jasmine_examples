@@ -1,3 +1,6 @@
+// Include what we need to include: this is specific to jasmine-node
+require("../src/disemvoweler.js");
+
 describe('Welcome to The Disemvowler', function(){
     it('removes vowels, and nothing but vowels', function(){
 	expect(disemvowel('mmhmm')).toEqual('mmhmm');
