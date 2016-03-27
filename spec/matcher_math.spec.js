@@ -12,14 +12,17 @@
 //  • toThrow checks if a function throws an error.
 //  • .not inverts the meaning of the following matcher.
 
-
-
 //TODO:
 // - finish implementing custom match ( and test the "not" case ) 
 // - add the last three matchers ( toBeCloseTo, NaN, Null)
 // - add errors to throw
 // - implement a variety of spies
 // - edit comments at top
+
+//jasmine.Matchers.prototype.toNotContain = function(expected) {
+//  return !this.env.contains_(this.actual, expected);
+//};
+
 
 require("../src/matcher_math.js");
 
@@ -29,35 +32,35 @@ var a = {
 
 beforeEach(function() {
     this.addMatchers({
-	toContainMatch: function(expected) {
+
+	toContainMatch: function(expected){
 	    this.message = function(){
-		return "Expected " + this.actual + " to contain a match";
+		return "Expected " + this.actual + " to contain a match with " + expected;
 	    };
+	    return containsMatch(this.actual, expected);
+	},
 
-	//  jasmine.Env.prototype.contains_ = function(haystack, needle) {
-	//	if (jasmine.isArray_(haystack)) {
-	//	    for (var i = 0; i < haystack.length; i++) {
-
-	//  REPLACE THIS LINE WITH REGEXP TEST 
-	//		if (this.equals_(haystack[i], needle)) return true;
-	//	    }
-	//	    return false;
-	//	}
-
-	//   RETURN IF NOT AN ARRAY 
-	//	return haystack.indexOf(needle) >= 0;
-	//   };
-
-	    
-
-
-	    //jasmine.Matchers.prototype.toContain = function(expected) {
-	    //	return this.env.contains_(this.actual, expected);
-	    //};
-	    return new RegExp(expected).test(this.actual);
+	toNotContainMatch: function(expected){
+	    this.message = function(){
+		return "Expected " + this.actual + " not to contain a match with " + expected;
+	    };
+	    return !containsMatch(this.actual, expected);
 	}
     });
 });
+
+
+function containsMatch(input, matcher){
+    if (jasmine.isArray_(input)){
+	for (var i = 0; i < input.length; i++){
+	    if (new RegExp(matcher).test(input[i])) return true
+	}
+	return false;
+    }
+    // Change to throw error
+    return false;
+}
+
 
 describe("testing the behaviour of random number generation", function(){
     it("should pass numerous tests for boolean and truth/falsitude", function(){
@@ -78,7 +81,8 @@ describe("testing the behaviour of random number generation", function(){
     });
     
     it("test the contents of the returned array for a numeric match", function(){
-	//custom combination of contains & matching 
+	//custom combination of contains & matching
+	expect(matcher_math(500,0,500).pop()).toEqual(jasmine.any(Number));
 	expect(matcher_math(9,0,30)).toContainMatch(/[0-9]/);
 	expect(matcher_math(80,0,30)).not.toContainMatch(/[A-Z]/);
     });
