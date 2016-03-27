@@ -51,14 +51,17 @@ beforeEach(function() {
 
 
 function containsMatch(input, matcher){
-    if (jasmine.isArray_(input)){
-	for (var i = 0; i < input.length; i++){
-	    if (new RegExp(matcher).test(input[i])) return true
+    try {
+	if (jasmine.isArray_(input)){
+	    for (var i = 0; i < input.length; i++){
+		if (new RegExp(matcher).test(input[i])) return true
+	    }
+	    return false;
 	}
-	return false;
     }
-    // Change to throw error
-    return false;
+    catch(err){
+	throw "output is not an array";
+    }
 }
 
 
