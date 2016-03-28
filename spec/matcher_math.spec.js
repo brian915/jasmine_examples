@@ -1,20 +1,32 @@
-//  • toEqual checks for equality, not necessarily the same object.
-//  • toBe checks if two objects are the same.
-//  • toBeTruthy checks if a value is truthy (not just true).
-//  • toBeFalsy checks if a value is falsy (not just false).
-//  • toBeDefined checks if a value is defined.
-//  • toBeUndefined checks if a value is undefined.
-//  • toBeNull checks if a value is null.
-//  • toBeNaN checks if a value is NaN.
-//  • toContain checks if a value is inside another.
-//  • toBeCloseTo checks decimal proximity.
-//  • toMatch checks if a value matches a given regular expression.
-//  • toThrow checks if a function throws an error.
-//  • .not inverts the meaning of the following matcher.
+/**
+  THIS TEST SPEC EXPLORES A VARIETY OF STANDARD AND CUSTOM JASMINE MATCHERS
 
-//TODO:
-// - implement a variety of spies
-// - edit comments at top
+  STANDARD MATCHERS :
+
+  • toEqual checks for equality, not necessarily the same object.
+  • toBe checks if two objects are the same.
+  • toBeTruthy checks if a value is truthy (not just true).
+  • toBeFalsy checks if a value is falsy (not just false).
+  • toBeDefined checks if a value is defined.
+  • toBeUndefined checks if a value is undefined.
+  • toBeNull checks if a value is null.
+  • toBeNaN checks if a value is NaN.
+  • toContain checks if a value is inside another.
+  • toBeCloseTo checks decimal proximity.
+  • toMatch checks if a value matches a given regular expression.
+  • toThrow checks if a function throws an error.
+  • .not inverts the meaning of the following matcher.
+ 
+  CUSTOM MATCHERS : 
+
+  • toContainMatch checks if a value in the returned array matches another
+  • toBeWithinRangeOf checks if a value is within a specified range of values
+
+  TODO:
+
+  - implement a variety of spies
+
+**/
 
 require("../src/matcher_math.js");
 
@@ -39,7 +51,7 @@ beforeEach(function() {
 	    return !containsMatch(this.actual, expected);
 	},
 	
-	toBeWithinOf: function(distance, base) {
+	toBeWithinRangeOf: function(distance, base) {
 	    this.message = function() {
 		var lower = base - distance;
 		var upper = base + distance;
@@ -79,7 +91,7 @@ describe("testing the behaviour of random number generation", function(){
 	expect(matcher_math(98).pop()).toBeLessThan(100);
 	expect(matcher_math(0).pop()).not.toBe(0);
 	expect(matcher_math(8).pop()).toMatch(/[0-9]/);
-	expect(matcher_math(1).pop()).toBeWithinOf(3,2);
+	expect(matcher_math(1).pop()).toBeWithinRangeOf(3,2);
     });
     
     it("test the contents of the returned array for a numeric match", function(){
