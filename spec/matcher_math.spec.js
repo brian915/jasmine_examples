@@ -95,7 +95,6 @@ describe("testing the behaviour of random number generation", function(){
     });
     
     it("test the contents of the returned array for a numeric match", function(){
-	//custom combination of contains & matching
 	expect(matcher_math(500,0,500).pop()).toEqual(jasmine.any(Number));
 	expect(matcher_math(9,0,30)).toContainMatch(/[0-9]/);
 	expect(matcher_math(80,0,30)).not.toContainMatch(/[A-Z]/);
