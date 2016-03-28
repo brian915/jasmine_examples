@@ -73,6 +73,8 @@ describe("testing the behaviour of random number generation", function(){
 
     it("should return a random number within the range of 0 to the input number", function(){
 	expect(matcher_math(0).pop()).toEqual(1);
+	expect(matcher_math(100,10).pop()).toBeGreaterThan(1);
+	expect(matcher_math(98).pop()).toBeLessThan(100);
 	expect(matcher_math(0).pop()).not.toBe(0);
 	expect(matcher_math(8).pop()).toMatch(/[0-9]/);
     });
