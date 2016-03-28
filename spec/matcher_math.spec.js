@@ -13,8 +13,6 @@
 //  • .not inverts the meaning of the following matcher.
 
 //TODO:
-// - add the last three matchers ( toBeCloseTo, NaN, Null)
-// - add errors to throw
 // - implement a variety of spies
 // - edit comments at top
 
@@ -55,19 +53,13 @@ beforeEach(function() {
 
 
 function containsMatch(input, matcher){
-//    try {
-	if (jasmine.isArray_(input)){
-	    for (var i = 0; i < input.length; i++){
-		if (new RegExp(matcher).test(input[i])) return true
-	    }
-	    return false;
+    if (jasmine.isArray_(input)){
+	for (var i = 0; i < input.length; i++){
+	    if (new RegExp(matcher).test(input[i])) return true
 	}
-//    }
-//    catch(err){
-//	throw "output is not an array";
-//    }
+	return false;
+    }
 }
-
 
 describe("testing the behaviour of random number generation", function(){
     it("should pass numerous tests for boolean and truth/falsitude", function(){
