@@ -39,6 +39,16 @@ beforeEach(function() {
 		return "Expected " + this.actual + " not to contain a match with " + expected;
 	    };
 	    return !containsMatch(this.actual, expected);
+	},
+	
+	toBeWithinOf: function(distance, base) {
+	    this.message = function() {
+		var lower = base - distance;
+		var upper = base + distance;
+		return "Expected " + this.actual + " to be between " +
+		    lower + " and " + upper + " (inclusive)";
+	    };
+	    return Math.abs(this.actual - base) <= distance;
 	}
     });
 });
@@ -77,6 +87,7 @@ describe("testing the behaviour of random number generation", function(){
 	expect(matcher_math(98).pop()).toBeLessThan(100);
 	expect(matcher_math(0).pop()).not.toBe(0);
 	expect(matcher_math(8).pop()).toMatch(/[0-9]/);
+	expect(matcher_math(1).pop()).toBeWithinOf(3,2);
     });
     
     it("test the contents of the returned array for a numeric match", function(){
