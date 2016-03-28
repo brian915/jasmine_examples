@@ -13,16 +13,10 @@
 //  • .not inverts the meaning of the following matcher.
 
 //TODO:
-// - finish implementing custom match ( and test the "not" case ) 
 // - add the last three matchers ( toBeCloseTo, NaN, Null)
 // - add errors to throw
 // - implement a variety of spies
 // - edit comments at top
-
-//jasmine.Matchers.prototype.toNotContain = function(expected) {
-//  return !this.env.contains_(this.actual, expected);
-//};
-
 
 require("../src/matcher_math.js");
 
@@ -51,17 +45,17 @@ beforeEach(function() {
 
 
 function containsMatch(input, matcher){
-    try {
+//    try {
 	if (jasmine.isArray_(input)){
 	    for (var i = 0; i < input.length; i++){
 		if (new RegExp(matcher).test(input[i])) return true
 	    }
 	    return false;
 	}
-    }
-    catch(err){
-	throw "output is not an array";
-    }
+//    }
+//    catch(err){
+//	throw "output is not an array";
+//    }
 }
 
 
@@ -91,10 +85,10 @@ describe("testing the behaviour of random number generation", function(){
     });
 
     it("should throw an error on invalid input",function(){
-	// make these throw an error 
-	expect(matcher_math('i').pop()).toBeNaN();
+	expect(function(){ matcher_math(whale); }).toThrow();
 	expect(matcher_math(a.bar).pop()).toBeNaN();
 	expect(matcher_math(9,0,200,43,69,10)).toBeTruthy();
     });
+    
 });
 
