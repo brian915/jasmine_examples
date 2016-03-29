@@ -25,7 +25,6 @@
   TODO:
 
   - implement a variety of spies
-
 **/
 
 require("../src/matcher_math.js");
@@ -105,6 +104,8 @@ describe("testing the behaviour of random number generation", function(){
 	expect(matcher_math(a.bar).pop()).toBeNaN();
 	expect(matcher_math(9,0,200,43,69,10)).toBeTruthy();
     });
+
+    //### SPY HERE - ON A RANDOM OBJECT - NEED TO INTIALIZE WITH VARS MIN & MAX
     
 });
 

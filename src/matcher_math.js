@@ -1,3 +1,12 @@
+/**
+
+takes a series of arguments , mandatory max range, 
+as well as optional min_nums and nums count, 
+representing the number of random numbers 
+included in the result. Returns an array.
+
+**/
+
 global.matcher_math = function(max_num,min_num,nums){
     
     if(min_num === undefined){
@@ -26,6 +35,12 @@ global.matcher_math = function(max_num,min_num,nums){
 	random_num = Math.floor(Math.random() * max) + min; 
 	return random_num;
     }
+    
 }
+
+    
+
+
+
 
 
