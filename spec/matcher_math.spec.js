@@ -58,10 +58,9 @@ beforeEach(function() {
 		    lower + " and " + upper + " (inclusive)";
 	    };
 	    return Math.abs(this.actual - base) <= distance;
-	}
+	},
     });
 });
-
 
 function containsMatch(input, matcher){
     if (jasmine.isArray_(input)){
@@ -73,6 +72,7 @@ function containsMatch(input, matcher){
 }
 
 describe("testing the behaviour of random number generation", function(){
+   
     it("should pass numerous tests for boolean and truth/falsitude", function(){
 	expect(matcher_math(5,1,4)).toBeTruthy();
 	expect(matcher_math(50000,0,40)).toBeTruthy();
@@ -105,7 +105,9 @@ describe("testing the behaviour of random number generation", function(){
 	expect(matcher_math(9,0,200,43,69,10)).toBeTruthy();
     });
 
-    //### SPY HERE - ON A RANDOM OBJECT - NEED TO INTIALIZE WITH VARS MIN & MAX
+    it("it should currently call the spy", function(){
+
+    });
     
 });
 
