@@ -103,11 +103,39 @@ describe("testing the behaviour of random number generation", function(){
 	expect(function(){ matcher_math(whale); }).toThrow();
 	expect(matcher_math(a.bar).pop()).toBeNaN();
 	expect(matcher_math(9,0,200,43,69,10)).toBeTruthy();
-    });
-
-    it("it should currently call the spy", function(){
-
-    });
-    
+    });    
 });
 
+describe("Using a spy with the random array of numbers generator", function() {
+    var foo, bar = null;
+
+    beforeEach(function() {
+	foo = {
+	    setBar: function(value) {
+		bar = value;
+	    }
+	};
+
+	spyOn(foo, 'setBar');
+
+	foo.setBar(123);
+	foo.setBar(456, 'another param');
+    });
+
+    it("tracks that the spy was called", function() {
+	expect(foo.setBar).toHaveBeenCalled();
+    });
+
+    xit("tracks that the spy was called x times", function() {
+	expect(foo.setBar).toHaveBeenCalledTimes(2);
+    });
+
+    it("tracks all the arguments of its calls", function() {
+	expect(foo.setBar).toHaveBeenCalledWith(123);
+	expect(foo.setBar).toHaveBeenCalledWith(456, 'another param');
+    });
+
+    it("stops all execution on a function", function() {
+	expect(bar).toBeNull();
+    });
+});
